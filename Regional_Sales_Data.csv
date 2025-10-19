@@ -1,0 +1,51 @@
+Date,Region,Sales,Manager
+2025-10-01,,2211.0,John Doe
+2025-10-02,North,1565.0,John Doe
+2025-10-03,East,,
+2025-10-04,West,1834.0,Jane Smith
+2025-10-05,East,2447.0,Michael Brown
+2025-10-06,North,1851.0,John Doe
+2025-10-07,East,2372.0,Emily Davis
+2025-10-08,North,1786.0,Michael Brown
+2025-10-09,South,2171.0,Emily Davis
+2025-10-10,West,1510.0,John Doe
+2025-10-11,North,2028.0,Michael Brown
+2025-10-12,North,1606.0,Jane Smith
+2025-10-13,West,1791.0,Jane Smith
+2025-10-14,West,1653.0,Emily Davis
+2025-10-15,East,1960.0,
+2025-10-16,South,2055.0,Emily Davis
+2025-10-17,West,1979.0,John Doe
+2025-10-18,West,2259.0,Emily Davis
+2025-10-19,West,1578.0,
+2025-10-20,West,2263.0,John Doe
+2025-10-21,,2388.0,Michael Brown
+2025-10-22,South,1620.0,Jane Smith
+2025-10-23,South,1865.0,Emily Davis
+2025-10-24,East,,Jane Smith
+2025-10-25,South,1978.0,Michael Brown
+2025-10-26,West,2339.0,Michael Brown
+2025-10-27,East,2323.0,John Doe
+2025-10-28,East,2275.0,Emily Davis
+2025-10-29,North,2054.0,Jane Smith
+2025-10-30,South,2398.0,Michael Brown
+2025-10-31,North,1548.0,Emily Davis
+2025-11-01,North,2403.0,Jane Smith
+2025-11-02,North,1988.0,John Doe
+2025-11-03,South,1846.0,Michael Brown
+2025-11-04,West,2034.0,John Doe
+2025-11-05,South,1896.0,Jane Smith
+2025-11-06,,,John Doe
+2025-11-07,South,2116.0,Michael Brown
+2025-11-08,North,1561.0,Jane Smith
+2025-11-09,East,error,Emily Davis
+2025-11-10,West,error,Michael Brown
+2025-11-11,South,1605.0,
+2025-11-12,South,,John Doe
+2025-11-13,South,1535.0,John Doe
+2025-11-14,,2295.0,
+2025-11-15,East,1547.0,Michael Brown
+2025-11-16,East,2173.0,John Doe
+2025-11-17,West,1911.0,John Doe
+2025-11-18,,,Emily Davis
+2025-11-19,South,1807.0,John Doe
