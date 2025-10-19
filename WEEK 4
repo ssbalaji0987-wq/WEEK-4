@@ -1,0 +1,122 @@
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.preprocessing import StandardScaler
+from io import StringIO # Used for creating a dummy dataset
+
+# --- 1. Data Preparation & Consolidation (Simulating Power Query Steps) ---
+
+# NOTE: Replace this section with your actual data loading logic.
+# The PDF mentions using Power Query to consolidate 'Excel sheets'
+# This part simulates that with a dummy dataset.
+
+print("--- Data Preparation & Consolidation ---")
+
+# Create a simulated raw dataset for demonstration
+# Imagine this data came from multiple consolidated Excel sheets
+data = """
+Feature_A,Feature_B,Target_Class
+10,20.5,0
+12,24.1,1
+10,20.5,0
+15,,1
+11,22.0,0
+18,30.2,1
+15,28.5,1
+11,22.0,0
+20,35.0,0
+13,25.5,1
+,27.0,1
+"""
+df = pd.read_csv(StringIO(data))
+print("\n1. Initial Consolidated Dataset (with issues):")
+print(df)
+print("\n---")
+
+#Identify and remove all duplicate entries
+initial_rows = len(df)
+df.drop_duplicates(inplace=True)
+print(f"Duplicates removed. {initial_rows - len(df)} rows were dropped.")
+print("---")
+
+# Address missing values and inconsistencies
+# For this example, we'll fill missing numerical values (NaN) with the mean of the column.
+print("Missing values before: \n", df.isnull().sum())
+for col in df.columns:
+    if df[col].dtype != 'object':
+        df[col].fillna(df[col].mean(), inplace=True)
+print("\nMissing values addressed by filling with mean.")
+print("Missing values after: \n", df.isnull().sum())
+print("---")
+
+print("\n2. Cleaned and Structured Dataset:")
+print(df)
+print("="*50)
+
+# --- 2. Neural Network Modelling and Analysis ---
+
+print("\n--- Neural Network Modelling ---")
+
+# 2.1. Separate features (X) and target (y)
+X = df.drop('Target_Class', axis=1)
+y = df['Target_Class']
+
+# 2.2. Standardize/Scale the features (Important for Neural Networks)
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# 2.3. Split the data into training and testing sets
+# The model will perform data modelling and predictive analysis
+X_train, X_test, y_train, y_test = train_test_split(
+    X_scaled, y, test_size=0.3, random_state=42
+)
+
+# 2.4. Apply a neural network model (MLPClassifier)
+# NOTE: The PDF requires documenting 'model parameters'
+# Here, we define and print the parameters.
+model_parameters = {
+    'hidden_layer_sizes': (10, 5), # Two hidden layers with 10 and 5 neurons
+    'max_iter': 1000,
+    'activation': 'relu',
+    'solver': 'adam',
+    'random_state': 42
+}
+print(f"\n3. Model Parameters: {model_parameters}")
+
+nn_model = MLPClassifier(**model_parameters)
+
+# Train the model
+nn_model.fit(X_train, y_train)
+print("\nNeural Network Model training complete.")
+print("---")
+
+# Generate clear insights and forecasts (Predictions)
+# Generate forecasts on the test set
+y_pred = nn_model.predict(X_test)
+y_proba = nn_model.predict_proba(X_test)[:, 1] # Probability for class 1
+
+print("\n4. Forecasts (Predictions on Test Data):")
+forecast_df = pd.DataFrame({'Actual': y_test, 'Predicted': y_pred, 'Probability_Class_1': y_proba.round(4)})
+print(forecast_df.to_string())
+print("---")
+
+# Document the model parameters and results
+print("\n5. Model Results and Performance:")
+
+# Accuracy Score
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy Score: {accuracy:.4f}")
+
+# Detailed Classification Report
+print("\nClassification Report (Key Insights):")
+print(classification_report(y_test, y_pred, zero_division=0))
+
+if accuracy > 0.8:
+    insight = "The Neural Network achieved high accuracy, suggesting it can reliably predict the target class based on the given features."
+else:
+    insight = "The current model performance is moderate. Further feature engineering or hyperparameter tuning may be required to improve reliability."
+
+print(f"\nActionable Insight/Summary: {insight}")
+print("="*50)
